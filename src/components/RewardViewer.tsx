@@ -1,12 +1,11 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Plus, Package, ArrowRight } from 'lucide-react';
-import { PRODUCT_HOTSPOTS, SPRING_CONFIG, SPRING_SNAPPY } from '../constants';
+import { Package, ArrowRight } from 'lucide-react';
+import { SPRING_CONFIG, SPRING_SNAPPY } from '../constants';
 import { useAudio } from '../hooks/useAudio';
 interface Props { onStartSurvey: () => void; }
 
 export default function RewardViewer({ onStartSurvey }: Props) {
-  const [activeHotspot, setActiveHotspot] = useState<number | null>(null);
   const [showBox, setShowBox] = useState(false);
   const { playClick } = useAudio();
 
@@ -27,21 +26,13 @@ export default function RewardViewer({ onStartSurvey }: Props) {
             alt=""
             className="absolute inset-0 w-full h-full object-cover object-center"
           />
-          {/* Semi-transparent overlay for readability */}
-          <div className="absolute inset-0 bg-white/70 backdrop-blur-sm" />
           {/* Content */}
           <div className="relative z-10 p-6">
             <h3 className="text-sm font-semibold text-[#d86018] mb-1 tracking-wide">Minipresso GR2</h3>
             <p className="text-xs text-[#9a9a8f] mb-6">Forest Gray Olive • Your Evaluation Unit</p>
             <div className="relative aspect-square max-w-[280px] mx-auto mb-6">
               <img src="https://cdn.shopify.com/s/files/1/0574/2150/8666/files/WACACO_Minipresso_GR2_Gray_Olive_Hero.png" alt="Minipresso GR2" className="w-full h-full object-contain relative z-10" onError={(e)=>{(e.target as HTMLImageElement).style.display='none';}} />
-              {PRODUCT_HOTSPOTS.map((h)=>(
-                <button key={h.id} className="absolute -translate-x-1/2 -translate-y-1/2 cursor-pointer z-20" style={{left:`${h.x}%`,top:`${h.y}%`}} onClick={()=>{playClick();setActiveHotspot(activeHotspot===h.id?null:h.id);}}>
-                  <span className="absolute inset-0 rounded-full bg-[#d86018]/25 hotspot-ping-outer" /><span className="absolute inset-0 rounded-full bg-[#d86018]/15 animate-pulse" />
-                  <motion.span whileHover={{scale:1.25}} whileTap={{scale:.85}} className="relative z-10 block w-8 h-8"><Plus size={32} className="text-[#d86018]"/></motion.span>
-                </button>))}
             </div>
-            <AnimatePresence>{activeHotspot&&(()=>{const h=PRODUCT_HOTSPOTS.find(hp=>hp.id===activeHotspot)!;return(<motion.div initial={{opacity:0,height:0}} animate={{opacity:1,height:'auto'}} exit={{opacity:0,height:0}} className="bg-white/80 backdrop-blur-sm rounded-xl p-4 border border-[#d86018]/20"><h4 className="text-sm font-semibold text-[#49493f] mb-1">{h.title}</h4><p className="text-xs text-[#6b6b5f]">{h.description}</p></motion.div>);})()}</AnimatePresence>
           </div>
         </div>
       </motion.div>
