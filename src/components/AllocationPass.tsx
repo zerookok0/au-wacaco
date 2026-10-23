@@ -40,7 +40,7 @@ export default function AllocationPass() {
             </div>
           </div>
           <div className="flex items-center justify-between py-3 border-t border-[#d5d5cc]"><span className="text-xs text-[#6b6b5f]">Machine Value</span><div className="text-right"><span className="text-xs text-[#9a9a8f] line-through mr-2">AU${PRODUCT_VALUE.toFixed(2)}</span><span className="text-sm font-bold text-[#166534]">AU$0.00</span></div></div>
-          <p className="text-[10px] text-[#9a9a8f] text-right">100% Research Sponsored</p>
+          <div className="flex items-center justify-between py-0.5"><span className="text-[10px] text-[#9a9a8f]">Research Grant</span><span className="text-[10px] font-semibold text-[#166534]">−AU${PRODUCT_VALUE.toFixed(2)} (100% Grant)</span></div>
         </div>
         <div className="border-dashed-perf h-px mx-0 opacity-20"/>
         <div className="p-5 pt-4 space-y-3">
@@ -49,6 +49,7 @@ export default function AllocationPass() {
           <div className="flex items-start gap-3"><Shield size={14} className="text-[#565E47] mt-0.5 flex-shrink-0"/><div className="flex-1 flex justify-between"><span className="text-xs text-[#6b6b5f]">Signature on Delivery &amp; Transit Loss Cover</span><span className="text-xs text-[#166534] font-medium">INCLUDED</span></div></div>
           <div className="flex items-start gap-3"><Leaf size={14} className="text-[#565E47] mt-0.5 flex-shrink-0"/><div className="flex-1 flex justify-between"><span className="text-xs text-[#6b6b5f]">Eco-Packaging Carbon Offset</span><span className="text-xs text-[#166534] font-medium">INCLUDED</span></div></div>
           <div className="flex justify-between items-center pt-3 border-t border-[#d5d5cc]"><span className="text-sm font-bold text-[#49493f]">Total Due</span><span className="text-xl font-extrabold text-[#d86018]">AU${DISPATCH_FEE.toFixed(2)}</span></div>
+          <p className="text-[9px] text-[#9a9a8f] text-center mt-2 leading-relaxed">All transactions are billed strictly in Australian Dollars (AUD). No international conversion markups or hidden fees.</p>
         </div>
       </motion.div>
 

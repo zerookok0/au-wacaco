@@ -5,8 +5,8 @@
 @tailwind utilities;
 
 * { -webkit-tap-highlight-color: transparent; -webkit-user-select: none; user-select: none; }
-html { scroll-behavior: smooth; background-color: #edede8; overscroll-behavior: none; }
-body { font-family: 'Inter', system-ui, sans-serif; background-color: #edede8; color: #49493f; overflow-x: hidden; overscroll-behavior-y: none; }
+html { scroll-behavior: smooth; background-color: #edede8; }
+body { font-family: 'Inter', system-ui, sans-serif; background-color: #edede8; color: #49493f; overflow-x: hidden; overflow-y: auto; overscroll-behavior-y: auto; }
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: #edede8; }
 ::-webkit-scrollbar-thumb { background: #d5d5cc; border-radius: 2px; }
