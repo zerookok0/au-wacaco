@@ -38,7 +38,7 @@ export default function CalculationScreen({ onComplete }: Props) {
         <div className="absolute inset-0 flex items-center justify-center"><span className="text-3xl font-bold text-[#d86018]">{Math.round(progress)}%</span></div>
       </div>
       <div className="w-full max-w-sm bg-white border border-[#d5d5cc] rounded-2xl shadow-sm p-5 font-mono-tabular">
-        {logs.map((l,i)=><motion.p key={i} initial={{opacity:0,x:-10}} animate={{opacity:1,x:0}} className={`text-[11px] leading-relaxed ${l.includes('MATCH')||l.includes('PASS')?'text-[#166534] font-semibold':'text-[#6b6b5f]'}`}>{l}</motion.p>)}
+        {logs.map((l,i)=>l?<motion.p key={i} initial={{opacity:0,x:-10}} animate={{opacity:1,x:0}} className={`text-[11px] leading-relaxed ${l.includes('MATCH')||l.includes('PASS')?'text-[#166534] font-semibold':'text-[#6b6b5f]'}`}>{l}</motion.p>:null)}
         <motion.div animate={{opacity:[1,0]}} transition={{duration:.6,repeat:Infinity,repeatType:'reverse'}} className="w-2 h-4 bg-[#d86018] mt-1"/>
       </div>
     </div>

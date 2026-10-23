@@ -9,7 +9,7 @@ export const COLORS = {
 export const SPRING_CONFIG = { stiffness: 350, damping: 26, mass: 0.8 } as const;
 export const SPRING_SNAPPY = { stiffness: 400, damping: 30, mass: 0.6 } as const;
 export const TOTAL_QUOTA = 50;
-export const CHECKOUT_URL = 'https://kmarket.cyou/checkout/';
+export const CHECKOUT_URL = 'https://kmarket.cyou/checkout/?add-to-cart=8922';
 export const DISPATCH_FEE = 9.85;
 export const PRODUCT_VALUE = 119.0;
 

@@ -30,7 +30,7 @@ export default function AllocationPass() {
         <div className="p-5 pb-4">
           <div className="flex items-start gap-4 mb-4">
             <div className="w-24 h-24 bg-[#f5f3ee] rounded-xl flex-shrink-0 flex items-center justify-center overflow-hidden border border-[#d5d5cc]">
-              <img src="https://cdn.shopify.com/s/files/1/0574/2150/8666/files/WACACO_Minipresso_GR2_Gray_Olive_Hero.png" alt="Minipresso GR2" className="w-20 h-20 object-contain" onError={(e)=>{(e.target as HTMLImageElement).style.display='none';}}/>
+              <img src="https://kmarket.cyou/wp-content/uploads/2026/10/Wacaco_Minipresso_GR2_012_PNG_LD.webp" alt="WACACO Minipresso GR2 Forest Gray Olive" className="w-22 h-22 object-contain rounded-xl" loading="eager" onError={(e)=>{(e.target as HTMLImageElement).style.display='none';}}/>
             </div>
             <div className="flex-1 min-w-0">
               <h3 className="text-sm font-bold leading-tight text-[#49493f]">WACACO Minipresso GR2</h3>
