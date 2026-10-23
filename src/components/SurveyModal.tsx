@@ -57,7 +57,7 @@ export default function SurveyModal({ isOpen, onClose, onComplete }: Props) {
           <button disabled={!canGo} onClick={goSurvey} className="w-full py-4 rounded-2xl font-bold text-sm tracking-wide transition-all active:scale-[0.98] disabled:opacity-30 btn-primary pulse-ring">CONFIRM ELIGIBILITY & COMMENCE SURVEY →</button>
         </motion.div></div>}
 
-        {phase==='questions' && <div className="px-5 py-6">
+        {phase==='questions' && SURVEY_QUESTIONS[currentQ] && <div className="px-5 py-6">
           <AnimatePresence mode="wait" custom={direction}>
             <motion.div key={currentQ} custom={direction}
               initial={{x: direction==='forward'?'100%':'-100%', opacity:0}} animate={{x:0, opacity:1}} exit={{x: direction==='forward'?'-100%':'100%', opacity:0}} transition={SPRING_CONFIG}>
