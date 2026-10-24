@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { ChevronDown, MapPin } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { MapPin } from 'lucide-react';
 import WacacoLogo from './WacacoLogo';
+import PackagingTermsModal from './PackagingTermsModal';
 import { TOTAL_QUOTA, SPRING_SNAPPY } from '../constants';
 import { useAudio } from '../hooks/useAudio';
 
@@ -9,6 +10,7 @@ interface Props { onStartSurvey: () => void; remainingUnits: number; }
 
 export default function HeroSection({ onStartSurvey, remainingUnits }: Props) {
   const [s, setS] = useState(false);
+  const [termsOpen, setTermsOpen] = useState(false);
   const { playClick } = useAudio();
   useEffect(() => { const i = setInterval(() => setS(v => !v), 12000); return () => clearInterval(i); }, []);
 
@@ -49,15 +51,15 @@ export default function HeroSection({ onStartSurvey, remainingUnits }: Props) {
         </motion.div>
       </div>
 
-      <div className="relative z-10 mt-auto mb-10 flex flex-col items-center gap-3">
+      <div className="relative z-10 mt-auto mb-10 flex flex-col items-center gap-2">
         <button onClick={()=>{playClick();onStartSurvey();}} className="px-10 py-4 btn-primary font-bold text-sm rounded-2xl pulse-ring active:scale-[0.98] tracking-wide">START 2-MINUTE EVALUATION →</button>
-        <p className="text-[10px] text-[#9a9a8f] tracking-wide drop-shadow-sm">10 Questions • Instant Approval • AU$9.85 Australia Post Dispatch</p>
+        <p className="text-[10px] text-[#9a9a8f] tracking-wide drop-shadow-sm">10 Questions • Brand New Unit (Carton Transit Blemish) • AU$6.85 AusPost Dispatch</p>
+        <button onClick={()=>{playClick();setTermsOpen(true);}} className="text-[12px] text-stone-500 hover:text-stone-800 underline underline-offset-4 decoration-stone-300/60 hover:decoration-stone-500 transition-colors cursor-pointer">View packaging inspection standards & allocation terms ↗</button>
       </div>
 
-      <motion.div initial={{opacity:0}} animate={{opacity:1}} transition={{delay:1.6}} className="absolute bottom-4 z-10 flex flex-col items-center gap-1">
-        <motion.div animate={{y:[0,6,0]}} transition={{duration:2,repeat:Infinity}}><ChevronDown size={16} className="text-[#9a9a8f]" /></motion.div>
-        <span className="text-[8px] tracking-[0.2em] text-[#9a9a8f] uppercase drop-shadow-sm">Swipe down to discover</span>
-      </motion.div>
+      <AnimatePresence>
+        {termsOpen && <PackagingTermsModal isOpen onClose={() => setTermsOpen(false)} />}
+      </AnimatePresence>
     </section>
   );
 }
