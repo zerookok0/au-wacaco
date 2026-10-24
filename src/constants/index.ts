@@ -11,7 +11,7 @@ export const SPRING_SNAPPY = { stiffness: 400, damping: 30, mass: 0.6 } as const
 export const TOTAL_QUOTA = 50;
 export const CHECKOUT_URL = 'https://kmarket.cyou/checkout/?add-to-cart=8922';
 export const DISPATCH_FEE = 6.85;
-export const PRODUCT_VALUE = 119.0;
+export const PRODUCT_VALUE = 79.90;
 
 export interface SurveyQuestion {
   id: number;

@@ -71,7 +71,7 @@ export default function PackagingTermsModal({ isOpen, onClose }: Props) {
             <div>
               <h3 className="text-sm font-bold text-[#49493f] mb-1.5">Reason for Allocation (Carton Transit Blemish)</h3>
               <p className="text-[12px] sm:text-[13px] text-[#6b6b5f] leading-relaxed">
-                During international container freight and Australian port handling, retail packaging sustained minor exterior carton creases or scuffs. While unsuited for full-price retail display shelves (RRP AU$119.00), the internal hardware is in flawless condition. WACACO Australia has allocated these verified units directly to independent consumer coffee studies.
+                During international container freight and Australian port handling, retail packaging sustained minor exterior carton creases or scuffs. While unsuited for full-price retail display shelves (RRP AU$79.90), the internal hardware is in flawless condition. WACACO Australia has allocated these verified units directly to independent consumer coffee studies.
               </p>
             </div>
           </div>

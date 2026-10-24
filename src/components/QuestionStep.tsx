@@ -106,7 +106,7 @@ export default memo(function QuestionStep({ question, selectedValue, onAnswer }:
                   <div>
                     <p className="text-xs font-semibold text-stone-700 mb-1">Who provides the rewards?</p>
                     <p className="text-[11px] sm:text-xs text-stone-500 leading-relaxed">
-                      All Minipresso GR2 evaluation units (valued at AU$119.00) are 100% sponsored, manufactured, and allocated directly by WACACO as research grants. Verified panelists only contribute standard Australia Post registered dispatch &amp; handling (AU$6.85).
+                      All Minipresso GR2 evaluation units (valued at AU$79.90) are 100% sponsored, manufactured, and allocated directly by WACACO as research grants. Verified panelists only contribute standard Australia Post registered dispatch &amp; handling (AU$6.85).
                     </p>
                   </div>
                 </div>
