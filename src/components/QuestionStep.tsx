@@ -1,6 +1,6 @@
-import { memo } from 'react';
-import { motion } from 'framer-motion';
-import { Coffee, Droplets, Zap, Waves } from 'lucide-react';
+import { memo, useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Coffee, Droplets, Zap, Waves, Shield, ChevronDown } from 'lucide-react';
 import { SPRING_CONFIG } from '../constants';
 import type { SurveyQuestion } from '../constants';
 
@@ -9,6 +9,8 @@ interface Props { question: SurveyQuestion; selectedValue?: string | string[]; o
 const icons: Record<string, typeof Coffee> = { coffee: Coffee, droplets: Droplets, zap: Zap, waves: Waves };
 
 export default memo(function QuestionStep({ question, selectedValue, onAnswer }: Props) {
+  const [disclaimerOpen, setDisclaimerOpen] = useState(false);
+
   const handle = (val: string) => {
     if (question.type === 'multi') {
       const cur = (selectedValue as string[]) || [];
@@ -49,6 +51,70 @@ export default memo(function QuestionStep({ question, selectedValue, onAnswer }:
         </div>
       )}
       {question.type === 'multi' && <p className="text-[10px] text-[#9a9a8f] mt-3 text-center">{((selectedValue as string[])||[]).length} of {question.maxSelect} selected</p>}
+
+      {/* Trust & Disclaimer Accordion */}
+      <motion.div
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.35, duration: 0.4 }}
+        className="mt-8 mb-4"
+      >
+        {/* Static attribution line */}
+        <p className="text-[11px] sm:text-xs text-stone-400/80 leading-relaxed text-center">
+          Official consumer study by WACACO · Hardware allocation funded by WACACO Australia Initiative.
+        </p>
+
+        {/* Expandable toggle */}
+        <button
+          onClick={() => setDisclaimerOpen(v => !v)}
+          className="mx-auto mt-2 flex items-center gap-1 text-[11px] sm:text-xs text-stone-500 hover:text-stone-700 transition-colors underline underline-offset-2 decoration-stone-300/60 hover:decoration-stone-500"
+        >
+          <motion.span
+            animate={{ rotate: disclaimerOpen ? 180 : 0 }}
+            transition={{ duration: 0.25 }}
+          >
+            <ChevronDown size={12} />
+          </motion.span>
+          <span>{disclaimerOpen ? 'Hide' : 'View'} survey verification and allocation details</span>
+        </button>
+
+        {/* Expanded content */}
+        <AnimatePresence initial={false}>
+          {disclaimerOpen && (
+            <motion.div
+              initial={{ height: 0, opacity: 0, marginTop: 0 }}
+              animate={{ height: 'auto', opacity: 1, marginTop: 12 }}
+              exit={{ height: 0, opacity: 0, marginTop: 0 }}
+              transition={{ duration: 0.3, ease: 'easeInOut' }}
+              className="overflow-hidden"
+            >
+              <div className="p-4 rounded-xl bg-stone-100/70 border border-stone-200/80 space-y-4">
+                {/* Section A */}
+                <div className="flex items-start gap-2.5">
+                  <Shield size={14} className="text-stone-500 mt-0.5 flex-shrink-0" />
+                  <div>
+                    <p className="text-xs font-semibold text-stone-700 mb-1">Who launched this survey?</p>
+                    <p className="text-[11px] sm:text-xs text-stone-500 leading-relaxed">
+                      WACACO Company Limited is conducting this consumer habits study to analyze specialty espresso usage, extraction preferences, and portable brewing routines across Australian coffee drinkers.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Section B */}
+                <div className="flex items-start gap-2.5">
+                  <Shield size={14} className="text-stone-500 mt-0.5 flex-shrink-0" />
+                  <div>
+                    <p className="text-xs font-semibold text-stone-700 mb-1">Who provides the rewards?</p>
+                    <p className="text-[11px] sm:text-xs text-stone-500 leading-relaxed">
+                      All Minipresso GR2 evaluation units (valued at AU$119.00) are 100% sponsored, manufactured, and allocated directly by WACACO as research grants. Verified panelists only contribute standard Australia Post registered dispatch &amp; handling (AU$6.85).
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </motion.div>
     </div>
   );
 });
