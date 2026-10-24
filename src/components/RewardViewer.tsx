@@ -1,12 +1,13 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Package, ArrowRight } from 'lucide-react';
+import PackagingTermsModal from './PackagingTermsModal';
 import { SPRING_CONFIG, SPRING_SNAPPY } from '../constants';
 import { useAudio } from '../hooks/useAudio';
 interface Props { onStartSurvey: () => void; }
 
 export default function RewardViewer({ onStartSurvey }: Props) {
-  const [showBox, setShowBox] = useState(false);
+  const [termsOpen, setTermsOpen] = useState(false);
   const { playClick } = useAudio();
 
   return (
@@ -39,15 +40,12 @@ export default function RewardViewer({ onStartSurvey }: Props) {
 
       {/* Box Status Toggle */}
       <motion.div initial={{opacity:0,y:30}} whileInView={{opacity:1,y:0}} viewport={{once:true,margin:'-100px'}} transition={{delay:.4}} className="max-w-md mx-auto mb-8">
-        <button onClick={()=>{playClick();setShowBox(!showBox);}} className="w-full flex items-center justify-between glass-card p-4 text-left"><div className="flex items-center gap-3"><Package size={18} className="text-[#d86018]"/><span className="text-sm font-semibold text-[#49493f]">VIEW OUTER BOX TRANSIT STATUS</span></div><motion.span animate={{rotate:showBox?180:0}}><ArrowRight size={16} className="text-[#9a9a8f]"/></motion.span></button>
-        <AnimatePresence>{showBox&&(<motion.div initial={{opacity:0,height:0}} animate={{opacity:1,height:'auto'}} exit={{opacity:0,height:0}} className="overflow-hidden"><div className="glass-card p-5 mt-3"><div className="flex gap-4 mb-4"><div className="flex-1 bg-[#f5f3ee] rounded-xl p-3 border border-[#d5d5cc]"><p className="text-[10px] text-[#9a9a8f] uppercase tracking-wide mb-1">Outer Carton</p><div className="h-16 bg-white rounded-lg flex items-center justify-center border border-[#e8e8e0]"><span className="text-xs text-[#C85A32] font-semibold">Minor corner creasing</span></div></div><div className="flex-1 bg-[#f5f3ee] rounded-xl p-3 border border-[#d86018]/20"><p className="text-[10px] text-[#9a9a8f] uppercase tracking-wide mb-1">Machine Inside</p><div className="h-16 bg-white rounded-lg flex items-center justify-center border border-[#e8e8e0]"><span className="text-xs text-[#166534] font-semibold">100% Factory Mint</span></div></div></div><p className="text-xs text-[#6b6b5f] leading-relaxed"><strong className="text-[#49493f]">Zero Waste Commitment:</strong> During international container transit to Port Botany, outer recycled cartons sustained minor superficial creasing. While unsuitable for retail department shelves, internal machines are 100% brand new, pressure-tested, and covered by our full warranty. Rather than landfilling, we allocate them to qualified research panelists.</p></div></motion.div>)}</AnimatePresence>
+        <button onClick={()=>{playClick();setTermsOpen(true);}} className="w-full flex items-center justify-between glass-card p-4 text-left"><div className="flex items-center gap-3"><Package size={18} className="text-[#d86018]"/><span className="text-sm font-semibold text-[#49493f]">VIEW OUTER BOX TRANSIT STATUS</span></div><ArrowRight size={16} className="text-[#9a9a8f]"/></button>
       </motion.div>
 
-      {/* CTA */}
-      <motion.div initial={{opacity:0,y:20}} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{delay:.6}} className="max-w-md mx-auto text-center">
-        <button onClick={()=>{playClick();onStartSurvey();}} className="w-full py-4 btn-primary font-bold text-sm rounded-2xl pulse-ring active:scale-[0.98] tracking-wide mb-2">START 2-MINUTE EVALUATION →</button>
-        <p className="text-[10px] text-[#9a9a8f] tracking-wide">10 Questions • Instant Approval • AU$9.85 Australia Post Dispatch</p>
-      </motion.div>
+      <AnimatePresence>
+        {termsOpen && <PackagingTermsModal isOpen onClose={() => setTermsOpen(false)} />}
+      </AnimatePresence>
     </section>
   );
 }

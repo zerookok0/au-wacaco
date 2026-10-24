@@ -51,10 +51,10 @@ export default function HeroSection({ onStartSurvey, remainingUnits }: Props) {
         </motion.div>
       </div>
 
-      <div className="relative z-10 mt-auto mb-10 flex flex-col items-center gap-2">
+      <div className="relative z-10 mt-auto pb-10 sm:pb-12 flex flex-col items-center gap-2">
         <button onClick={()=>{playClick();onStartSurvey();}} className="px-10 py-4 btn-primary font-bold text-sm rounded-2xl pulse-ring active:scale-[0.98] tracking-wide">START 2-MINUTE EVALUATION →</button>
-        <p className="text-[10px] text-[#9a9a8f] tracking-wide drop-shadow-sm">10 Questions • Brand New Unit (Carton Transit Blemish) • AU$6.85 AusPost Dispatch</p>
-        <button onClick={()=>{playClick();setTermsOpen(true);}} className="text-[12px] text-stone-500 hover:text-stone-800 underline underline-offset-4 decoration-stone-300/60 hover:decoration-stone-500 transition-colors cursor-pointer">View packaging inspection standards & allocation terms ↗</button>
+        <p className="text-[10px] text-stone-600 tracking-wide drop-shadow-sm">10 Questions • Brand New Unit (Carton Transit Blemish) • AU$6.85 AusPost Dispatch</p>
+        <button onClick={()=>{playClick();setTermsOpen(true);}} className="text-[12px] text-stone-700 hover:text-stone-900 font-medium underline underline-offset-4 decoration-stone-300/60 hover:decoration-stone-500 transition-colors cursor-pointer">View packaging inspection standards & allocation terms ↗</button>
       </div>
 
       <AnimatePresence>
