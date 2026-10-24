@@ -24,8 +24,8 @@ export default function HeroSection({ onStartSurvey, remainingUnits }: Props) {
           className="absolute w-full h-full object-cover object-center sm:object-[center_30%]"
         />
         {/* Overlay gradient for text readability */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#edede8]/85 via-[#edede8]/60 to-[#edede8]/90" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#edede8] via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#edede8]/85 via-[#edede8]/60 to-[#edede8]/95" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#edede8] via-[#edede8]/40 to-transparent" />
       </div>
 
       {/* Navigation */}
@@ -43,11 +43,19 @@ export default function HeroSection({ onStartSurvey, remainingUnits }: Props) {
       <div className="relative z-10 flex flex-col items-center text-center px-5 max-w-md mx-auto mt-20">
         <motion.span initial={{opacity:0,y:20}} animate={{opacity:1,y:0}} transition={{delay:.5}} className="text-[10px] font-semibold tracking-[0.25em] text-[#d86018] drop-shadow-sm uppercase mb-6">Specialty Coffee Research Initiative // Cohort 2026-OCT</motion.span>
         <motion.h1 initial={{opacity:0,y:30}} animate={{opacity:1,y:0}} transition={{delay:.7,...SPRING_SNAPPY}} className="text-3xl sm:text-4xl font-extrabold leading-tight mb-4 text-[#49493f] drop-shadow-sm">SHAPE THE NEXT ERA OF<br /><span className="text-gradient-primary">PORTABLE ESPRESSO.</span></motion.h1>
-        <motion.p initial={{opacity:0,y:20}} animate={{opacity:1,y:0}} transition={{delay:.9}} className="text-[#6b6b5f] text-sm leading-relaxed mb-8 max-w-sm drop-shadow-sm">WACACO is engineering our 2027 flagship manual extraction system. We invite Australian coffee drinkers to benchmark our precision mechanics.</motion.p>
+        <motion.p initial={{opacity:0,y:20}} animate={{opacity:1,y:0}} transition={{delay:.9}} className="text-[#6b6b5f] text-sm leading-relaxed mb-5 max-w-sm drop-shadow-sm">WACACO is engineering our 2027 flagship manual extraction system. We invite Australian coffee drinkers to benchmark our precision mechanics.</motion.p>
+
+        {/* Red Dot Winner 2024 — extracted from background watermark into clean badge */}
+        <motion.div initial={{opacity:0,y:12}} animate={{opacity:1,y:0}} transition={{delay:1.0}} className="mb-5">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full glass-surface text-[10px] font-semibold tracking-[0.15em] text-[#C85A32] uppercase">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#C85A32]" />
+            Red Dot Winner 2024
+          </span>
+        </motion.div>
 
         <motion.div initial={{opacity:0,scale:.9}} animate={{opacity:1,scale:1}} transition={{delay:1.1}} className="glass-card p-4 mb-10 w-full max-w-sm">
           <div className="flex items-center gap-2 mb-2"><MapPin size={14} className="text-[#d86018]" /><span className="text-[10px] font-semibold tracking-[0.2em] text-[#9a9a8f] uppercase">Today's Sydney & Melbourne Allocation</span></div>
-          <div className="flex items-baseline justify-between"><span className="text-sm text-[#6b6b5f]">{TOTAL_QUOTA} Units</span><motion.span key={s?'a':'b'} animate={{opacity:[1,.7,1]}} transition={{duration:.6}} className="text-2xl font-bold text-gradient-primary">{remainingUnits} Units Remaining</motion.span></div>
+          <div className="flex items-baseline justify-between"><span className="text-sm text-[#6b6b5f]">{TOTAL_QUOTA} Units</span><motion.span key={s?'a':'b'} animate={{opacity:[1,.7,1]}} transition={{duration:.6}} className="text-2xl font-bold text-gradient-primary">{remainingUnits === 1 ? '1 Unit Remaining' : `${remainingUnits} Units Remaining`}</motion.span></div>
         </motion.div>
       </div>
 

@@ -18,19 +18,22 @@ export default function RewardViewer({ onStartSurvey }: Props) {
         <p className="text-[#6b6b5f] text-sm leading-relaxed">Australia defines global espresso standards. From Bondi dawn surfs to off-grid bush tracks, our machines face your most demanding environments.</p>
       </motion.div>
 
-      {/* Interactive Product Viewer — card uses Amazon image as background */}
+      {/* Interactive Product Viewer — title above card to avoid overlap with exploded diagram labels */}
       <motion.div initial={{opacity:0,y:40}} whileInView={{opacity:1,y:0}} viewport={{once:true,margin:'-100px'}} transition={{delay:.2,...SPRING_CONFIG}} className="max-w-md mx-auto mb-10">
+        {/* Title + subtitle pulled outside the card for clean separation from diagram callouts */}
+        <div className="text-center mb-4">
+          <h3 className="text-sm font-semibold text-[#d86018] tracking-wide">Minipresso GR2</h3>
+          <p className="text-xs text-[#9a9a8f]">Forest Gray Olive • Your Evaluation Unit</p>
+        </div>
         <div className="relative rounded-[20px] overflow-hidden border border-[#d5d5cc] shadow-lg">
-          {/* Background image */}
+          {/* Background image — exploded diagram with callout labels */}
           <img
             src="https://wacaco.ae/cdn/shop/files/61vfbn9Fo6L._AC_SL1500.jpg"
             alt=""
             className="absolute inset-0 w-full h-full object-cover object-center"
           />
-          {/* Content */}
-          <div className="relative z-10 p-6">
-            <h3 className="text-sm font-semibold text-[#d86018] mb-1 tracking-wide">Minipresso GR2</h3>
-            <p className="text-xs text-[#9a9a8f] mb-6">Forest Gray Olive • Your Evaluation Unit</p>
+          {/* Content overlay for product hero render */}
+          <div className="relative z-10 p-6 pt-12">
             <div className="relative aspect-square max-w-[280px] mx-auto mb-6">
               <img src="https://cdn.shopify.com/s/files/1/0574/2150/8666/files/WACACO_Minipresso_GR2_Gray_Olive_Hero.png" alt="Minipresso GR2" className="w-full h-full object-contain relative z-10" onError={(e)=>{(e.target as HTMLImageElement).style.display='none';}} />
             </div>
