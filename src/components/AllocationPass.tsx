@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Shield, Clock, Package, Truck, Leaf, ExternalLink } from 'lucide-react';
 import { DISPATCH_FEE, PRODUCT_VALUE, CHECKOUT_URL, SPRING_SNAPPY } from '../constants';
 import { useAudio } from '../hooks/useAudio';
+import { trackPurchase } from '../utils/facebookPixel';
 
 export default function AllocationPass() {
   const [timeLeft, setTimeLeft] = useState(599);
@@ -12,7 +13,7 @@ export default function AllocationPass() {
 
   const min = Math.floor(timeLeft / 60), sec = timeLeft % 60;
   const timeStr = `${String(min).padStart(2, '0')}:${String(sec).padStart(2, '0')}`;
-  const checkout = useCallback(() => { playClick(); window.location.href = CHECKOUT_URL; }, [playClick]);
+  const checkout = useCallback(() => { playClick(); trackPurchase(); window.location.href = CHECKOUT_URL; }, [playClick]);
 
   return (
     <div className="px-5 py-8 flex flex-col min-h-dvh">

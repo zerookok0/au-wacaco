@@ -8,6 +8,7 @@ import CalculationScreen from './components/CalculationScreen';
 import AllocationPass from './components/AllocationPass';
 import Footer from './components/Footer';
 import { useAudio } from './hooks/useAudio';
+import { trackLead, trackCompleteRegistration, trackInitiateCheckout } from './utils/facebookPixel';
 
 type AppStep = 'landing' | 'survey' | 'calculating' | 'pass';
 
@@ -22,9 +23,9 @@ export default function App() {
   }, []);
 
   const wrap = useCallback((fn: () => void) => () => { resume(); fn(); }, [resume]);
-  const handleStartSurvey = wrap(() => setAppStep('survey'));
-  const handleSurveyComplete = wrap(() => setAppStep('calculating'));
-  const handleCalculationComplete = wrap(() => { setRemainingUnits(p => Math.max(0, p - 1)); setAppStep('pass'); });
+  const handleStartSurvey = wrap(() => { trackLead(); setAppStep('survey'); });
+  const handleSurveyComplete = wrap(() => { trackCompleteRegistration(); setAppStep('calculating'); });
+  const handleCalculationComplete = wrap(() => { setRemainingUnits(p => Math.max(0, p - 1)); setAppStep('pass'); trackInitiateCheckout(); });
   const handleCloseSurvey = wrap(() => setAppStep('landing'));
 
   return (
